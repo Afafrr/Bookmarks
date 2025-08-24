@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Better Bookmarks",
+  "description": "Redesign bookmarks and auto-organize them into folders.",
+  "version": "1.0",
+  "permissions": ["bookmarks", "tabs", "storage"],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
