@@ -3,6 +3,8 @@
 
 body {
   font-family: 'Inter', 'IBM Plex Sans', 'Open Sans', sans-serif;
+  color: #334155;
+  font-size: 13px;
 }
 
 h1 {
