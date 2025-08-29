@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import ArrowIcon from '/src/components/assets/tree_arrow.svg';
+import SmoothFolderFold from './FolderTree/SmoothFolderFold.vue';
 
 defineProps<{
   nodes: chrome.bookmarks.BookmarkTreeNode[];
@@ -15,7 +16,7 @@ function getFavIcon(url: string | undefined) {
   return `https://www.google.com/s2/favicons?sz=32&domain=${url}`;
 }
 </script>
-
+<!-- TODO: add icon for not found/undefined favicon -->
 <template>
   <ul class="folder-tree">
     <li v-for="node in nodes" :key="node.id">
@@ -24,7 +25,9 @@ function getFavIcon(url: string | undefined) {
         <img v-else class="fav-icons" :src="getFavIcon(node.url)" />
         <span :class="node.children ? 'folder-text' : 'link-text'">{{ node.title }}</span>
       </div>
+      <SmoothFolderFold>
         <FolderTree v-if="node.children && openFolders[node.id]" :nodes="node.children" />
+      </SmoothFolderFold>
     </li>
   </ul>
 </template>
@@ -34,6 +37,9 @@ function getFavIcon(url: string | undefined) {
   position: relative;
   width: 500px;
   user-select: none;
+}
+ul.folder-text {
+  height: 30px;
 }
 ul.folder-tree,
 ul.folder-tree li {
@@ -75,5 +81,4 @@ ul.folder-tree li {
 .folder-text {
   font-weight: 500;
 }
-
 </style>
